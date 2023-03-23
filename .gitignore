@@ -36,3 +36,6 @@
 
 # VSCode
 .vscode/
+
+# Files without an extension
+*.
