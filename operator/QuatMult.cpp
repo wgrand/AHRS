@@ -1,6 +1,6 @@
-#include "quat_mult.h"
+#include "QuatMult.h"
 
-Quaternion quat_mult(Quaternion p, Quaternion q) {
+Quaternion QuatMult(Quaternion p, Quaternion q) {
 
    float p0=p.w;
    float p1=p.x;

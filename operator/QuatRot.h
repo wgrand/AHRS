@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "quat_mult.h"
+#include "QuatMult.h"
 #include "../model/Vector.h"
 
 using namespace std;
@@ -11,4 +11,4 @@ using namespace std;
 /// @param q `Quaternion` that describes the rotation.
 /// @return Rotated `Vector`.
 
-Vector quatRot(Vector p, Quaternion q);
+Vector QuatRot(Vector p, Quaternion q);

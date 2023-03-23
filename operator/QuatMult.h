@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "Quaternion.h"
+#include "../model/Quaternion.h"
 
 using namespace std;
 
@@ -10,4 +10,4 @@ using namespace std;
 /// @param p `Quaternion`
 /// @param q `Quaternion`
 /// @return `Quaternion`
-Quaternion quat_mult(Quaternion p, Quaternion q);
+Quaternion QuatMult(Quaternion p, Quaternion q);

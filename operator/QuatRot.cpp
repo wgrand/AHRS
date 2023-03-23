@@ -1,6 +1,6 @@
-#include "quat_rot.h"
+#include "QuatRot.h"
 
-Vector quat_rot(Vector p, Quaternion q) {
+Vector QuatRot(Vector p, Quaternion q) {
 
    // convert p into a quaternion
    Quaternion p2 = {0, p.x, p.y, p.z};
