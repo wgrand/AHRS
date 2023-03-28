@@ -1,4 +1,6 @@
 
+#include <cmath>
+
 struct Vector { 
    float x, y, z;
 
