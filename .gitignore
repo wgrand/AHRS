@@ -1,3 +1,11 @@
+# Files without an extension
+*
+!*/
+!*.*
+
+# DS_Store
+.DS_Store
+
 # Prerequisites
 *.d
 
@@ -37,5 +45,3 @@
 # VSCode
 .vscode/
 
-# Files without an extension
-*
