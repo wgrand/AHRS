@@ -1,3 +1,4 @@
+#pragma once
 #include <cmath>
 
 #include "Mat3x3.h"

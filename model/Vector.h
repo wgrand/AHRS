@@ -1,4 +1,4 @@
-
+#pragma once
 #include <cmath>
 
 struct Vector { 
@@ -26,6 +26,23 @@ struct Vector {
    // Multiplication by scalar operator (vector * scalar)
    Vector operator*(float s) const {
       return {x*s, y*s, z*s};
+   }
+
+   // Multiplication by quaternion operator (vector * quaternion)
+   Vector operator*(Quaternion& q) const {
+      
+      // convert vector into a quaternion
+      Quaternion p2 = {0, x, y, z};
+
+      // create the quaternion conjugate
+      Quaternion q_conj = {q.w, -q.x, -q.y, -q.z};
+
+      // rotate the vector by the quaternion
+      Quaternion p_ = q_conj*(p2*q);
+
+      // eliminate the scalar part of the quaternion to get the vector
+      return {p_.x, p_.y, p_.z};
+      
    }
 
    // Division by scalar operator (vector / scalar)
