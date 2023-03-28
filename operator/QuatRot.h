@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "QuatMult.h"
+#include "../model/Quaternion.h"
 #include "../model/Vector.h"
 
 using namespace std;
