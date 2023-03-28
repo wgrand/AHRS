@@ -5,7 +5,7 @@
 #include "../model/Vector.h"
 #include "../model/Mat3x3.h"
 
-#include "../RotationMatrix.h"
+#include "../model/RotationMatrix.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ class AHRS {
 public:
    static const float gain;
    static const float gyro_bias;
-   static Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, string frame, float dt);
+   static Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, float dt, string frame);
 
 private:
    static Quaternion AttitudePropagation(Quaternion q_prior, Vector omega, float dt);
