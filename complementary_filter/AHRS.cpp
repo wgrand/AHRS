@@ -12,7 +12,7 @@ public:
    static const float gain = 0.995;
    static const float gyro_bias = 0.02;
 
-   static Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, string frame, float dt) {
+   static Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, float dt, string frame) {
 
       Quaternion q;
 
@@ -48,7 +48,7 @@ private:
    }
    static Quaternion AM_Estimation(Vector acc, Vector mag, string frame) {
       Mat3x3 R = RotationMatrix(acc, mag, frame);
-      Quaternion q = QuaternionFromMatrix(R);
+      Quaternion q = Quaternion(R);
       return q;
    }
 
