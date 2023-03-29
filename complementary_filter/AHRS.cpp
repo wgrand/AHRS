@@ -7,7 +7,7 @@ class AHRS {
 private:
 
    Quaternion AttitudePropagation(Quaternion q_prior, Vector omega, float dt) {
-      Quaternion q_omega = {1, -0.5*dt*omega.x, -0.5*dt*omega.y, -0.5*dt*omega.z };
+      Quaternion q_omega = {1, -0.5*dt*omega.x, -0.5*dt*omega.y, -0.5*dt*omega.z};
       Quaternion q = q_omega*q_prior;
       q.Normalize();
       return q;
@@ -24,7 +24,7 @@ public:
 
    AHRS() { }
 
-   Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, float dt, string frame) {
+   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
 
       Quaternion q;
 

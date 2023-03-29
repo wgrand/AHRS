@@ -17,5 +17,5 @@ public:
    float gain = 0.995;
    float gyro_bias = 0.02;
    AHRS() { }
-   Quaternion Update(Quaternion q_prior, Vector gyr, Vector acc, Vector mag, float dt, string frame) {};
+   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {};
 };
