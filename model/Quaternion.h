@@ -71,6 +71,12 @@ struct Quaternion {
       z /= length;
    }
 
+   // Return the conjugate of the quaternion
+   Quaternion Conjugate() {
+      return {w, -x, -y, -z};
+   }
+
+   // Return the length of the quaternion
    float Length() { 
       return std::sqrt(w*w + x*x + y*y + z*z);
    }
