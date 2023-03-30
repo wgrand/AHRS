@@ -13,7 +13,7 @@ private:
       return q;
    }
    Quaternion AM_Estimation(Vector acc, Vector mag, string frame) {
-      Mat3x3 R = RotationMatrix(acc, mag, frame);
+      const Mat3x3 R = RotationMatrix(acc, mag, frame);
       return Quaternion(R);
    }
 
@@ -28,17 +28,16 @@ public:
 
       Quaternion q;
 
-      // compute predicted quaternion
+      // Compute predicted quaternion
       Quaternion q_omega = AttitudePropagation(q_prior, gyr, dt);
 
-      // compute update quaternion
+      // Compute update quaternion
       Quaternion q_am = AM_Estimation(acc, mag, frame);
 
-      // fuse predicted and updated quaternions
+      // Fuse predicted and updated quaternions
       Quaternion sum_q = q_omega + q_am;
-      
       if (sum_q.Length() < sqrt(2)) {
-         q = q_omega*gain - q_am*(1 - gain); // if the components oppose each other, then they may add up to less than sqrt(2)
+         q = q_omega*gain - q_am*(1 - gain); // If the components oppose each other, then they may add up to less than sqrt(2)
       } else { 
          q = q_omega*gain + q_am*(1 - gain);
       }
