@@ -89,14 +89,17 @@ struct Quaternion {
    }
    
    Quaternion operator*(const Quaternion& q) const {
+   // this gives correct result: https://www.mathworks.com/help/aerotbx/ug/quatmultiply.html?w.mathworks.com#mw_beba0414-8a76-47e8-9a3b-696cfdd1610f
+   // this identical to computing rotation using rotation matrix; it matches time complexity, but rotation matrix is O(N) space complexity
       return { w*q.w - x*q.x - y*q.y - z*q.z,
                w*q.x + x*q.w - y*q.z + z*q.y,
                w*q.y + x*q.z + y*q.w - z*q.x,
-               w*q.z - x*q.y + y*q.x + z*q.w};
+               w*q.z - x*q.y + y*q.x + z*q.w };
+   // Hamilton product: https://en.wikipedia.org/wiki/Quaternion#Hamilton_product               
    //    return { w*q.w - x*q.x - y*q.y - z*q.z,
    //             w*q.x + x*q.w + y*q.z - z*q.y,
    //             w*q.y - x*q.z + y*q.w + z*q.x,
-   //             w*q.z + x*q.y - y*q.x + z*q.w};
+   //             w*q.z + x*q.y - y*q.x + z*q.w };
    }
 
    Quaternion operator*(float s) const {
