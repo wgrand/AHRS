@@ -35,7 +35,7 @@ struct Vector {
       Quaternion p2 = {0, x, y, z};
 
       // create the quaternion conjugate
-      Quaternion q_conj = {q.w, -q.x, -q.y, -q.z};
+      Quaternion q_conj = q.Conjugate();
 
       // rotate the vector by the quaternion
       Quaternion p_ = q_conj*(p2*q);

@@ -14,8 +14,8 @@ private:
    Quaternion AM_Estimation(Vector acc, Vector mag, string frame);
 
 public:
-   float gain = 0.995;
-   float gyro_bias = 0.02;
+   float gain;
+   float gyro_bias;
    AHRS() { }
-   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {};
+   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) { };
 };

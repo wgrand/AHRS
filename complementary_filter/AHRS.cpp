@@ -26,8 +26,6 @@ public:
 
    Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
 
-      Quaternion q;
-
       // Compute predicted quaternion
       Quaternion q_omega = AttitudePropagation(q_prior, gyr, dt);
 
@@ -35,6 +33,7 @@ public:
       Quaternion q_am = AM_Estimation(acc, mag, frame);
 
       // Fuse predicted and updated quaternions
+      Quaternion q;
       Quaternion sum_q = q_omega + q_am;
       if (sum_q.Length() < sqrt(2)) {
          q = q_omega*gain - q_am*(1 - gain); // If the components oppose each other, then they may add up to less than sqrt(2)
