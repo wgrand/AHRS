@@ -34,7 +34,7 @@ TEST(VectorTest, CrossProduct) {
 }
 
 TEST(VectorTest, Multiplication) {
-    
+
     // Define a quaternion
     Quaternion q(0.707, 0.0, 0.0, 0.707); // represents a 90 degree rotation about the z-axis
 
@@ -53,25 +53,6 @@ TEST(VectorTest, Multiplication) {
     EXPECT_NEAR(result.z, expected_result.z, 0.001);
 
 }
-
-
-// TEST(VectorTest, Multiplication) {
-
-//   // Test case 1: Identity quaternion
-//   Vector v1(1, 0, 0);
-//   Vector v2(2, 3, 4);
-//   Vector q_result = v1*v2;
-//   ASSERT_TRUE(q_result == v2);
-
-//   // Test case 2: Non-identity quaternions
-//   Vector v3(2, 1, 0, -1);
-//   Vector v4(3, -2, 1, 4);
-//   Vector q_expected(12, -2, 4, 4);
-//   Vector q_actual = v3*v4;
-//   ASSERT_TRUE(q_actual == q_expected);
-
-// }
-
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
