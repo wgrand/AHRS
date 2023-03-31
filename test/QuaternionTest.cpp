@@ -6,9 +6,9 @@ TEST(QuaternionTest, Multiply) {
     Quaternion q1(1, 2, 3, 4);
     Quaternion q2(5, 6, 7, 8);
 
-    Quaternion result = q1 * q2;
+    Quaternion result = q1*q2;
 
-    EXPECT_FLOAT_EQ(result.Length(), q1.Length() * q2.Length());
+    EXPECT_FLOAT_EQ(result.Length(), q1.Length()*q2.Length());
 }
 
 TEST(QuaternionTest, Conjugate) {
@@ -30,7 +30,7 @@ TEST(QuaternionTest, Normalize) {
     EXPECT_FLOAT_EQ(q.Length(), 1.0);
 }
 
-TEST(QuaternionTest, FromRotationMatrix1) {
+TEST(QuaternionTest, FromRotationMatrix) {
 
     // Test case 1
     Mat3x3 m = {1, 0, 0,
@@ -58,8 +58,8 @@ TEST(QuaternionTest, FromRotationMatrix1) {
 
     // Test case 3
     Mat3x3 m3 = {1, 0, 0,
-                0, 1, 0,
-                0, 0, 1};
+                 0, 1, 0,
+                 0, 0, 1};
 
     Quaternion q3 = Quaternion(m3);
 
