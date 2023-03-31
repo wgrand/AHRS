@@ -1,8 +1,12 @@
 #pragma once
 #include <cmath>
+#include "Quaternion.h"
 
 struct Vector { 
+   
    float x, y, z;
+
+   Vector(float x = 0.0f, float y = 0.0f, float z = 0.0f) : x(x), y(y), z(z) {}
 
    // Normalize the vector
    void Normalize() {
