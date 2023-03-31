@@ -76,14 +76,14 @@ TEST(QuaternionTest, Multiplication) {
   Quaternion q1(1, 0, 0, 0);
   Quaternion q2(2, 3, 4, 5);
   Quaternion q_result = q1*q2;
-  ASSERT_TRUE(q_result == q2);
+  EXPECT_TRUE(q_result == q2);
 
   // Test case 2: Non-identity quaternions
   Quaternion q3(2, 1, 0, -1);
   Quaternion q4(3, -2, 1, 4);
   Quaternion q_expected(12, -2, 4, 4);
   Quaternion q_actual = q3*q4;
-  ASSERT_TRUE(q_actual == q_expected);
+  EXPECT_TRUE(q_actual == q_expected);
 
 }
 
