@@ -32,6 +32,7 @@ TEST(QuaternionTest, Normalize) {
 
 TEST(QuaternionTest, FromRotationMatrix1) {
 
+    // Test case 1
     Mat3x3 m = {1, 0, 0,
                 0, 0, -1,
                 0, 1, 0};
@@ -43,37 +44,49 @@ TEST(QuaternionTest, FromRotationMatrix1) {
     EXPECT_NEAR(q.y, 0.0, 0.0001);
     EXPECT_NEAR(q.z, 0.0, 0.0001);
 
-}
-
-TEST(QuaternionTest, FromRotationMatrix2) {
-
-    Mat3x3 m = {0, 0, 1,
-                0, 1, 0,
+    // Test case 2
+    Mat3x3 m2 = {0, 0, 1,
+                 0, 1, 0,
                 -1, 0, 0};
 
-    Quaternion q = Quaternion(m);
+    Quaternion q2 = Quaternion(m2);
 
-    EXPECT_NEAR(q.w, 0.70710677, 0.0001);
-    EXPECT_NEAR(q.x, 0.0, 0.0001);
-    EXPECT_NEAR(q.y, 0.70710677, 0.0001);
-    EXPECT_NEAR(q.z, 0.0, 0.0001);
+    EXPECT_NEAR(q2.w, 0.70710677, 0.0001);
+    EXPECT_NEAR(q2.x, 0.0, 0.0001);
+    EXPECT_NEAR(q2.y, 0.70710677, 0.0001);
+    EXPECT_NEAR(q2.z, 0.0, 0.0001);
 
-}
-
-TEST(QuaternionTest, FromRotationMatrix3) {
-
-    Mat3x3 m = {1, 0, 0,
+    // Test case 3
+    Mat3x3 m3 = {1, 0, 0,
                 0, 1, 0,
                 0, 0, 1};
 
-    Quaternion q = Quaternion(m);
+    Quaternion q3 = Quaternion(m3);
 
-    EXPECT_NEAR(q.w, 1.0, 0.0001);
-    EXPECT_NEAR(q.x, 0.0, 0.0001);
-    EXPECT_NEAR(q.y, 0.0, 0.0001);
-    EXPECT_NEAR(q.z, 0.0, 0.0001);
+    EXPECT_NEAR(q3.w, 1.0, 0.0001);
+    EXPECT_NEAR(q3.x, 0.0, 0.0001);
+    EXPECT_NEAR(q3.y, 0.0, 0.0001);
+    EXPECT_NEAR(q3.z, 0.0, 0.0001);
 
 }
+
+TEST(QuaternionTest, Multiplication) {
+
+  // Test case 1: Identity quaternion
+  Quaternion q1(1, 0, 0, 0);
+  Quaternion q2(2, 3, 4, 5);
+  Quaternion q_result = q1*q2;
+  ASSERT_TRUE(q_result == q2);
+
+  // Test case 2: Non-identity quaternions
+  Quaternion q3(2, 1, 0, -1);
+  Quaternion q4(3, -2, 1, 4);
+  Quaternion q_expected(12, -2, 4, 4);
+  Quaternion q_actual = q3*q4;
+  ASSERT_TRUE(q_actual == q_expected);
+
+}
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
