@@ -24,7 +24,7 @@ struct Quaternion {
 
       //  The following comes from p. 6-7 from https://www.plymouth.ac.uk/uploads/production/document/path/8/8594/Terzakis_et_al_2012__A_Recipe_on_the_Parameterization_of_Rotation_Matrices...MIDAS.SME.2012.TR.004.pdf
       float T = R[0][0] + R[1][1] + R[2][2];
-      float s, w, x, y, z;
+      float s;
 
       if (T > 0) {
 
