@@ -6,7 +6,7 @@ project(AHRS)
 # Set C++ standard
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+# set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
@@ -35,8 +35,12 @@ add_subdirectory(test)
 # Add test executable
 add_executable(quaternionTests test/QuaternionTest.cpp)
 add_executable(vectorTests test/VectorTest.cpp)
+add_executable(rotationMatrixTests test/RotationMatrixTest.cpp)
 target_link_libraries(quaternionTests gtest gtest_main)
 target_link_libraries(vectorTests gtest gtest_main)
+target_link_libraries(rotationMatrixTests gtest gtest_main)
 
 # Register tests
-add_test(NAME MyTest COMMAND runTests)
+add_test(NAME QuaternionTest COMMAND quaternionTests)
+add_test(NAME VectorTest COMMAND vectorTests)
+add_test(NAME RotationMatrixTest COMMAND rotationMatrixTests)
