@@ -22,6 +22,8 @@ TEST(VectorTest, Normalize) {
 }
 
 TEST(VectorTest, CrossProduct) {
+
+    // Test case 1
     Vector v1(1, 2, 3);
     Vector v2(5, 6, 7);
 
@@ -30,6 +32,26 @@ TEST(VectorTest, CrossProduct) {
     Vector expected_result(-4, 8, -4);
 
     EXPECT_TRUE(result == expected_result);
+
+    // Test case 2
+    Vector v3(1, 0, 0);
+    Vector v4(0, 1, 0);
+
+    Vector result2 = v3^v4;
+
+    Vector expected_result2(0, 0, 1);
+
+    EXPECT_TRUE(result2 == expected_result2);
+
+    // Test case 3
+    Vector v5(0, 1, 0);
+    Vector v6(0, 0, 1);
+
+    Vector result3 = v5^v6;
+
+    Vector expected_result3(1, 0, 0);
+
+    EXPECT_TRUE(result3 == expected_result3);
 
 }
 
