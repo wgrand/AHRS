@@ -35,8 +35,10 @@ add_subdirectory(test)
 # Add test executable
 add_executable(quaternionTests test/QuaternionTest.cpp)
 add_executable(vectorTests test/VectorTest.cpp)
+add_executable(rotationMatrixTests test/RotationMatrixTest.cpp)
 target_link_libraries(quaternionTests gtest gtest_main)
 target_link_libraries(vectorTests gtest gtest_main)
+target_link_libraries(rotationMatrixTests gtest gtest_main)
 
 # Register tests
 add_test(NAME MyTest COMMAND runTests)
