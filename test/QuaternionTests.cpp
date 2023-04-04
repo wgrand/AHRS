@@ -9,6 +9,12 @@ TEST(QuaternionTest, Multiply) {
     Quaternion result = q1*q2;
 
     EXPECT_FLOAT_EQ(result.Length(), q1.Length()*q2.Length());
+
+    EXPECT_FLOAT_EQ(result.w, -60);
+    EXPECT_FLOAT_EQ(result.x, 20);
+    EXPECT_FLOAT_EQ(result.y, 14);
+    EXPECT_FLOAT_EQ(result.z, 32);
+
 }
 
 TEST(QuaternionTest, Conjugate) {
