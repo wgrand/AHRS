@@ -19,7 +19,7 @@ Mat3x3 RotationMatrix(Vector a, Vector m, string frame = "NED") {
 
       // H = A x E (y-axis)
       // east = down(acc) x north(mag)
-      H = E^A;
+      H = A^E;
       H.Normalize();
 
       // M = H x A (x-axis)
