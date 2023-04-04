@@ -36,7 +36,30 @@ TEST(RotationMatrixTest, Identity) {
     EXPECT_NEAR(result[2][1], expected_result[2][1], 0.0001);
     EXPECT_NEAR(result[2][2], expected_result[2][2], 0.0001);
     
+
+
+    // Test case 2: ENU frame
+        // Create a rotation matrix from the acceleration and magnetic field vectors.
+    Mat3x3 result2 = RotationMatrix(acc, mag, "ENU");
+
+    // Define the expected result.
+    Mat3x3 expected_result2 = {0.0, 1.0, 0.0,
+                               1.0, 0.0, 0.0,
+                               0.0, 0.0, -1.0};
+
+    EXPECT_NEAR(result2[0][0], expected_result2[0][0], 0.0001);
+    EXPECT_NEAR(result2[0][1], expected_result2[0][1], 0.0001);
+    EXPECT_NEAR(result2[0][2], expected_result2[0][2], 0.0001);
+    EXPECT_NEAR(result2[1][0], expected_result2[1][0], 0.0001);
+    EXPECT_NEAR(result2[1][1], expected_result2[1][1], 0.0001);
+    EXPECT_NEAR(result2[1][2], expected_result2[1][2], 0.0001);
+    EXPECT_NEAR(result2[2][0], expected_result2[2][0], 0.0001);
+    EXPECT_NEAR(result2[2][1], expected_result2[2][1], 0.0001);
+    EXPECT_NEAR(result2[2][2], expected_result2[2][2], 0.0001);
+
 }
+
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

@@ -1,50 +1,61 @@
+#pragma once
 #include "AHRS.h"
 
 using namespace std;
 
-class AHRS {
+AHRS::AHRS() {
+   this->gain = 0.995;
+   this->gyro_bias = 0.02;
+}
 
-private:
+AHRS::AHRS(float gain, float gyro_bias) {
+   this->gain = gain;
+   this->gyro_bias = gyro_bias;
+}
 
-   Quaternion AttitudePropagation(Quaternion q_prior, Vector omega, float dt) {
-      Quaternion q_omega = {1, -0.5*dt*omega.x, -0.5*dt*omega.y, -0.5*dt*omega.z};
-      Quaternion q = q_omega*q_prior;
-      q.Normalize();
-      return q;
-   }
-   Quaternion AM_Estimation(Vector acc, Vector mag, string frame) {
-      const Mat3x3 R = RotationMatrix(acc, mag, frame);
-      return Quaternion(R);
-   }
+Quaternion AHRS::AttitudePrediction(Quaternion q_prior, Vector omega, float dt) {
 
-public:
+   // 1. Attitude prediction
+   Quaternion q_omega = Quaternion(1.0f, -0.5f*dt*omega.x, -0.5f*dt*omega.y, -0.5f*dt*omega.z);
+   Quaternion q = q_omega*q_prior;
+   q.Normalize();
+      
+   return q;
 
-   float gain = 0.995;
-   float gyro_bias = 0.02;
+}
 
-   AHRS() { }
+Quaternion AHRS::Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
 
-   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
+   // 1. Attitude prediction
+   Quaternion q = AttitudePrediction(q_prior, gyr, dt);
 
-      // Compute predicted quaternion
-      Quaternion q_omega = AttitudePropagation(q_prior, gyr, dt);
+   // 2. Attitude measurement
+   Quaternion q_am = AM_Estimation(acc, mag, frame);
 
-      // Compute update quaternion
-      Quaternion q_am = AM_Estimation(acc, mag, frame);
-
-      // Fuse predicted and updated quaternions
-      Quaternion q;
-      Quaternion sum_q = q_omega + q_am;
-      if (sum_q.Length() < sqrt(2)) {
-         q = q_omega*gain - q_am*(1 - gain); // If the components oppose each other, then they may add up to less than sqrt(2)
-      } else { 
-         q = q_omega*gain + q_am*(1 - gain);
-      }
-
-      q.Normalize();
-
-      return q;
-
+   // 3. Attitude estimation
+   Quaternion q_est;
+   Quaternion sum_q =  q + q_am;
+   if (sum_q.Length() < sqrt(2)) {
+      q_est = q*gain - q_am*(1 - gain); // If the components oppose each other, then they may add up to less than sqrt(2)
+   } else { 
+      q_est = q*gain + q_am*(1 - gain);
    }
 
-};
+   q.Normalize();
+
+   return q_est;
+
+}
+
+Quaternion AHRS::AM_Estimation(Vector acc, Vector mag, string frame) {
+
+   // 1. Rotation matrix
+   Mat3x3 R = RotationMatrix(acc, mag, frame);
+
+   // 2. Quaternion
+   Quaternion q = Quaternion(R);
+
+   return q;
+
+}
+
