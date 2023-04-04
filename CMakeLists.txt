@@ -7,7 +7,7 @@ project(AHRS)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
 # set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-# set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
 # Include directories
@@ -32,15 +32,20 @@ add_subdirectory(libs/googletest)
 # Add test subdirectory
 add_subdirectory(test)
 
-# Add test executable
-add_executable(quaternionTests test/QuaternionTest.cpp)
-add_executable(vectorTests test/VectorTest.cpp)
-add_executable(rotationMatrixTests test/RotationMatrixTest.cpp)
-target_link_libraries(quaternionTests gtest gtest_main)
-target_link_libraries(vectorTests gtest gtest_main)
-target_link_libraries(rotationMatrixTests gtest gtest_main)
+# Add test executables
+function(add_test_executable test_name)
 
-# Register tests
-add_test(NAME QuaternionTest COMMAND quaternionTests)
-add_test(NAME VectorTest COMMAND vectorTests)
-add_test(NAME RotationMatrixTest COMMAND rotationMatrixTests)
+   # Create executable
+   add_executable(${test_name} test/${test_name}.cpp ${ARGN})
+
+   # Link libraries
+   target_link_libraries(${test_name} gtest gtest_main)
+
+   # Register test
+   add_test(NAME ${test_name} COMMAND ${test_name})
+   
+endfunction()
+
+add_test_executable(QuaternionTests)
+add_test_executable(VectorTests)
+add_test_executable(RotationMatrixTests)
