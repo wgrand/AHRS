@@ -10,12 +10,13 @@ using namespace std;
 
 class AHRS {
 private:
-   Quaternion AttitudePropagation(Quaternion q_prior, Vector omega, float dt);
+   float gain;
+   float gyro_bias;
+   Quaternion AttitudePrediction(Quaternion q_prior, Vector omega, float dt);
    Quaternion AM_Estimation(Vector acc, Vector mag, string frame);
 
 public:
-   float gain;
-   float gyro_bias;
-   AHRS() { }
-   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) { };
+   AHRS();
+   AHRS(float gain, float gyro_bias);
+   Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame);
 };

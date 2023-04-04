@@ -1,4 +1,3 @@
-#pragma once
 #include "AHRS.h"
 
 using namespace std;
@@ -41,7 +40,8 @@ Quaternion AHRS::Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, 
       q_est = q*gain + q_am*(1 - gain);
    }
 
-   q.Normalize();
+   // 4. Normalize
+   q_est.Normalize();
 
    return q_est;
 
