@@ -1,3 +1,11 @@
+# Files without an extension
+*
+!*/
+!*.*
+
+# DS_Store
+.DS_Store
+
 # Prerequisites
 *.d
 
@@ -30,3 +38,13 @@
 *.exe
 *.out
 *.app
+
+# Debug symbols
+*.dSYM
+
+# Build directories
+build/
+
+# VSCode
+.vscode/
+
