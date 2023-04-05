@@ -25,14 +25,19 @@ add_library(${PROJECT_NAME} ${SOURCES})
 ### TESTS ###
 
 # Google Test libraries
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs)
-target_link_libraries(${PROJECT_NAME} gtest gtest_main)
+message(STATUS "Fetching googletest")
+include(FetchContent)
+
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG release-1.11.0
+        GIT_SHALLOW TRUE
+        GIT_PROGRESS TRUE)
+FetchContent_MakeAvailable(googletest)
 
 # Enable testing
 enable_testing()
-
-# Add googletest subdirectory
-add_subdirectory(libs/googletest)
 
 # Add test subdirectory
 add_subdirectory(test)
