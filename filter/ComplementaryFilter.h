@@ -8,15 +8,15 @@
 
 using namespace std;
 
-class AHRS {
+class ComplementaryFilter {
 private:
    float gain;
    float gyro_bias;
    Quaternion AttitudePrediction(Quaternion q_prior, Vector omega, float dt);
-   Quaternion AM_Estimation(Vector acc, Vector mag, string frame);
+   Quaternion AttitudeMeasurement(Vector acc, Vector mag, string frame);
 
 public:
-   AHRS();
-   AHRS(float gain, float gyro_bias);
+   ComplementaryFilter();
+   ComplementaryFilter(float gain, float gyro_bias);
    Quaternion Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame);
 };
