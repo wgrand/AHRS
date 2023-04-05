@@ -6,7 +6,6 @@ project(AHRS)
 # Set C++ standard
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
@@ -14,20 +13,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(include)
 
 # Source files
-set(SOURCES ./main.cpp)
+set(SOURCES 
+   ./main.cpp
+   ./model/RotationMatrix.cpp
+   ./filter/ComplementaryFilter.cpp
+   )
 
-# Create executable
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} ${SOURCES})
+
+
+### TESTS ###
 
 # Google Test libraries
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs)
-target_link_libraries(${PROJECT_NAME} gtest gtest_main)
+message(STATUS "Fetching googletest")
+include(FetchContent)
+
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG release-1.11.0
+        GIT_SHALLOW TRUE
+        GIT_PROGRESS TRUE)
+FetchContent_MakeAvailable(googletest)
 
 # Enable testing
 enable_testing()
-
-# Add googletest subdirectory
-add_subdirectory(libs/googletest)
 
 # Add test subdirectory
 add_subdirectory(test)

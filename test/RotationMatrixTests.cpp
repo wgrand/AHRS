@@ -6,7 +6,7 @@
 #include "../model/Vector.h"
 #include "../model/Quaternion.h"
 #include "../model/Mat3x3.h"
-#include "../model/RotationMatrix.h"
+#include "../model/RotationMatrix.cpp" // TODO: Import the header file instead of the source file.
 
 TEST(RotationMatrixTest, Identity) {
 
