@@ -6,8 +6,6 @@
 #include "../model/Mat3x3.h"
 #include "../model/RotationMatrix.h"
 
-using namespace std;
-
 class ComplementaryFilter {
 private:
    float gain;
