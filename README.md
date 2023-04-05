@@ -2,7 +2,8 @@
 
 This repository contains implementations of AHRS filters in C++ for sensor fusion applications. The code takes an acceleration signal with an unknown orientation and rotates it so that the gravity value yields a positive value in the z-axis for the NED (North-East-Down) frame and a negative value in the z-axis for the ENU (East-North-Up) frame. Essentially, what this means is that the code is able to orient the acceleration signal in such a way that the direction of gravity is easy to identify.
 
-An attitude and heading reference system (AHRS) consists of sensors on three axes that provide attitude information for aircraft, including roll, pitch, and yaw [Link][1].
+> An attitude and heading reference system (AHRS) consists of sensors on three axes that provide attitude information for aircraft, including roll, pitch, and yaw.
+> [https://en.wikipedia.org/wiki/Attitude_and_heading_reference_system][1]
 
 ## Complementary Filter
 
@@ -46,5 +47,4 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## References
 [1]: https://en.wikipedia.org/wiki/Attitude_and_heading_reference_system
