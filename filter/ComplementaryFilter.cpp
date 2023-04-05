@@ -12,17 +12,27 @@ ComplementaryFilter::ComplementaryFilter(float gain, float gyro_bias) {
    this->gyro_bias = gyro_bias;
 }
 
+/// @brief Attitude prediction
+/// @param q_prior - prior attitude quaternion
+/// @param omega - gyroscope vector
+/// @param dt - time interval
+/// @return - predicted attitude quaternion
 Quaternion ComplementaryFilter::AttitudePrediction(Quaternion q_prior, Vector omega, float dt) {
 
-   // 1. Attitude prediction
    Quaternion q_omega = Quaternion(1.0f, -0.5f*dt*omega.x, -0.5f*dt*omega.y, -0.5f*dt*omega.z);
    Quaternion q = q_omega*q_prior;
    q.Normalize();
-      
    return q;
 
 }
 
+/// @brief Attitude estimation
+/// @param q_prior - prior attitude quaternion
+/// @param acc - acceleration vector
+/// @param gyr - gyroscope vector
+/// @param mag - magnetometer vector
+/// @param frame - NED or ENU
+/// @return Quaternion - estimated attitude quaternion
 Quaternion ComplementaryFilter::Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
 
    // 1. Attitude prediction
@@ -47,6 +57,11 @@ Quaternion ComplementaryFilter::Update(Quaternion q_prior, Vector acc, Vector gy
 
 }
 
+/// @brief Attitude measurement
+/// @param acc - acceleration vector
+/// @param mag - magnetometer vector
+/// @param frame - NED or ENU
+/// @return Quaternion - measured attitude quaternion
 Quaternion ComplementaryFilter::AttitudeMeasurement(Vector acc, Vector mag, string frame) {
 
    // 1. Rotation matrix
