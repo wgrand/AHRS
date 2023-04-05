@@ -1,7 +1,5 @@
 #include "ComplementaryFilter.h"
 
-using namespace std;
-
 ComplementaryFilter::ComplementaryFilter() {
    this->gain = 0.995;
    this->gyro_bias = 0.02;

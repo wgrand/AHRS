@@ -1,4 +1,5 @@
-#pragma once
+#ifndef QUATERNION_H
+#define QUATERNION_H
 #include <cmath>
 
 #include "Mat3x3.h"
@@ -13,14 +14,6 @@ struct Quaternion {
    Quaternion(Mat3x3 rotation_matrix) {
 
       Mat3x3 R = rotation_matrix;
-
-      //  http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-      
-      //  Chiaverini: http://www.iri.upc.edu/files/scidoc/2083-A-Survey-on-the-Computation-of-Quaternions-from-Rotation-Matrices.pdf
-      //  w = 0.5*sqrt(trace(R) + 1);
-      //  x = 0.5*sign(R(3,2)-R(2,3))*sqrt(clip(R(1,1)-R(2,2)-R(3,3), [-1, 1])+1);
-      //  y = 0.5*sign(R(1,3)-R(3,1))*sqrt(clip(R(2,2)-R(3,3)-R(1,1), [-1, 1])+1);
-      //  z = 0.5*sign(R(2,1)-R(1,2))*sqrt(clip(R(3,3)-R(1,1)-R(2,2), [-1, 1])+1);
 
       //  The following comes from p. 6-7 from https://www.plymouth.ac.uk/uploads/production/document/path/8/8594/Terzakis_et_al_2012__A_Recipe_on_the_Parameterization_of_Rotation_Matrices...MIDAS.SME.2012.TR.004.pdf
       float T = R[0][0] + R[1][1] + R[2][2];
@@ -124,3 +117,4 @@ struct Quaternion {
    }
 
 };
+#endif

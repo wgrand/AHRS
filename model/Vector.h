@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <cmath>
 #include "Quaternion.h"
 
@@ -78,3 +79,4 @@ struct Vector {
    }
 
 };
+#endif
