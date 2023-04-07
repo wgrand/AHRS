@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "RefFrame.h"
 #include "filter/ComplementaryFilter.h"
 #include "model/Vector.h"
 #include "model/Quaternion.h"
@@ -64,7 +65,7 @@ int main()
         Vector mag = {fields[29], fields[30], fields[31]};
 
         // Get new attitude quaternion
-        q = filter->Update(q, acc, gyr, mag, dt, "NED");
+        q = filter->Update(q, acc, gyr, mag, dt, RefFrame::ENU);
 
         // Rotate acceleration vector by attitude quaternion
         Vector a = acc*q;

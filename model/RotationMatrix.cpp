@@ -1,6 +1,6 @@
 #include "RotationMatrix.h"
 
-Mat3x3 RotationMatrix(Vector a, Vector m, string frame = "NED") {
+Mat3x3 RotationMatrix(Vector a, Vector m, RefFrame frame = NED) {
 
    // acceleration
    a.Normalize();
@@ -15,7 +15,7 @@ Mat3x3 RotationMatrix(Vector a, Vector m, string frame = "NED") {
    // rotation matrix
    Mat3x3 R;
 
-   if (frame == "NED") { 
+   if (frame == NED) { 
 
       // H = A x E (y-axis)
       // east = down(acc) x north(mag)

@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "gtest/gtest.h"
+#include "../RefFrame.h"
 #include "../model/Vector.h"
 #include "../model/Quaternion.h"
 #include "../model/Mat3x3.h"
@@ -19,7 +20,7 @@ TEST(RotationMatrixTest, Identity) {
     Vector mag(1.0, 0.0, 0.0);
 
     // Create a rotation matrix from the acceleration and magnetic field vectors.
-    Mat3x3 result = RotationMatrix(acc, mag, "NED");
+    Mat3x3 result = RotationMatrix(acc, mag, RefFrame::NED);
 
     // Define the expected result.
     Mat3x3 expected_result = {1.0, 0.0, 0.0,
@@ -39,8 +40,8 @@ TEST(RotationMatrixTest, Identity) {
 
 
     // Test case 2: ENU frame
-        // Create a rotation matrix from the acceleration and magnetic field vectors.
-    Mat3x3 result2 = RotationMatrix(acc, mag, "ENU");
+    // Create a rotation matrix from the acceleration and magnetic field vectors.
+    Mat3x3 result2 = RotationMatrix(acc, mag, RefFrame::ENU);
 
     // Define the expected result.
     Mat3x3 expected_result2 = {0.0, 1.0, 0.0,

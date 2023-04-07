@@ -31,7 +31,7 @@ Quaternion ComplementaryFilter::AttitudePrediction(Quaternion q_prior, Vector om
 /// @param mag - magnetometer vector
 /// @param frame - NED or ENU
 /// @return Quaternion - estimated attitude quaternion
-Quaternion ComplementaryFilter::Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, string frame) {
+Quaternion ComplementaryFilter::Update(Quaternion q_prior, Vector acc, Vector gyr, Vector mag, float dt, RefFrame frame) {
 
    // 1. Attitude prediction
    Quaternion q = AttitudePrediction(q_prior, gyr, dt);
@@ -60,7 +60,7 @@ Quaternion ComplementaryFilter::Update(Quaternion q_prior, Vector acc, Vector gy
 /// @param mag - magnetometer vector
 /// @param frame - NED or ENU
 /// @return Quaternion - measured attitude quaternion
-Quaternion ComplementaryFilter::AttitudeMeasurement(Vector acc, Vector mag, string frame) {
+Quaternion ComplementaryFilter::AttitudeMeasurement(Vector acc, Vector mag, RefFrame frame) {
 
    // 1. Rotation matrix
    Mat3x3 R = RotationMatrix(acc, mag, frame);
