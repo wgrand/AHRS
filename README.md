@@ -7,7 +7,7 @@ This repository contains implementations of AHRS filters in C++ for sensor fusio
 
 ## Complementary Filter
 
-This respository includes a Complementary filter, which is a sensor fusion algorithm used to combine data from multiple sensors with different characteristics. It is based on the idea of using a low-pass filter and a high-pass filter in parallel to achieve a good balance between filtering out noise and preserving the responsiveness of the system.
+This repository includes a Complementary filter, which is a sensor fusion algorithm used to combine data from multiple sensors with different characteristics. It is based on the idea of using a low-pass filter and a high-pass filter in parallel to achieve a good balance between filtering out noise and preserving the responsiveness of the system.
 
 The low-pass filter is used to remove high-frequency noise from the sensor data, while the high-pass filter is used to remove low-frequency drift. The output of the Complementary filter is a combination of the low-pass filtered data and the high-pass filtered data, resulting in a signal that is both stable and responsive.
 
